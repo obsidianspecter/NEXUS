@@ -4,45 +4,81 @@
 
 @layer base {
   :root {
+    /* Background and Foreground Colors */
     --background: 0 0% 100%;
     --foreground: 240 10% 3.9%;
+    
+    /* Card Colors */
     --card: 0 0% 100%;
     --card-foreground: 240 10% 3.9%;
+    
+    /* Popover Colors */
     --popover: 0 0% 100%;
     --popover-foreground: 240 10% 3.9%;
+    
+    /* Primary Colors */
     --primary: 240 5.9% 10%;
     --primary-foreground: 0 0% 98%;
+    
+    /* Secondary Colors */
     --secondary: 240 4.8% 95.9%;
     --secondary-foreground: 240 5.9% 10%;
+    
+    /* Muted Colors */
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
+    
+    /* Accent Colors */
     --accent: 240 4.8% 95.9%;
     --accent-foreground: 240 5.9% 10%;
+    
+    /* Destructive Colors */
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
+    
+    /* Border, Input, and Ring Colors */
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
+    
+    /* Border Radius */
     --radius: 0.5rem;
   }
 
   .dark {
+    /* Dark Mode Background and Foreground Colors */
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
+    
+    /* Dark Mode Card Colors */
     --card: 240 10% 3.9%;
     --card-foreground: 0 0% 98%;
+    
+    /* Dark Mode Popover Colors */
     --popover: 240 10% 3.9%;
     --popover-foreground: 0 0% 98%;
+    
+    /* Dark Mode Primary Colors */
     --primary: 0 0% 98%;
     --primary-foreground: 240 5.9% 10%;
+    
+    /* Dark Mode Secondary Colors */
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
+    
+    /* Dark Mode Muted Colors */
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
+    
+    /* Dark Mode Accent Colors */
     --accent: 240 3.7% 15.9%;
     --accent-foreground: 0 0% 98%;
+    
+    /* Dark Mode Destructive Colors */
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
+    
+    /* Dark Mode Border, Input, and Ring Colors */
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
@@ -50,11 +86,12 @@
 }
 
 @layer base {
+  /* Global Styles */
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
-

@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { motion } from "framer-motion"
 import { Github, Linkedin, Twitter } from "lucide-react"
 
 const socialLinks = [
@@ -9,14 +12,28 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-gradient-to-r from-background to-muted">
+    <motion.footer
+      className="border-t border-gradient-to-r from-background to-muted"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
       <div className="container flex flex-col items-center justify-between gap-8 py-12 md:h-32 md:flex-row">
-        <div className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0">
+        <motion.div
+          className="flex flex-col items-center gap-4 px-8 md:flex-row md:gap-2 md:px-0"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           <Link href="/" className="flex items-center space-x-2 hover:opacity-90 transition-opacity">
-          <div className="h-6 w-6 bg-foreground" style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }} />
+            <motion.div
+              className="h-6 w-6 bg-foreground"
+              style={{ clipPath: "polygon(50% 0%, 100% 100%, 0% 100%)" }}
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.2 }}
+            />
             <span className="font-bold text-lg md:text-xl">
-              Nexus
-              <span className="text-primary">AI</span>
+              Nexus<span className="text-primary">AI</span>
             </span>
           </Link>
           <p className="text-center text-sm leading-loose md:text-left md:text-gray-600">
@@ -31,27 +48,39 @@ export function Footer() {
             </a>
             .
           </p>
-        </div>
-        <div className="flex space-x-8 md:ml-8">
+        </motion.div>
+        <motion.div
+          className="flex space-x-8 md:ml-8"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.5 }}
+        >
           {socialLinks.map((link) => (
-            <a
+            <motion.a
               key={link.href}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors duration-200 hover:scale-105"
+              whileHover={{ scale: 1.1 }}
+              transition={{ duration: 0.2 }}
             >
               <link.icon className="h-5 w-5" />
               <span className="text-sm">{link.label}</span>
-            </a>
+            </motion.a>
           ))}
-        </div>
+        </motion.div>
       </div>
-      <div className="text-center text-sm text-muted-foreground py-8 border-t border-muted">
+      <motion.div
+        className="text-center text-sm text-muted-foreground py-8 border-t border-muted"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.7 }}
+      >
         © {new Date().getFullYear()} Nexus. All rights reserved.
         <br className="hidden md:block" />
         <span className="text-primary">Empowering AI Innovation</span>
-      </div>
-    </footer>
+      </motion.div>
+    </motion.footer>
   )
 }

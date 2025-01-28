@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 const topics = [
@@ -72,37 +75,73 @@ const topics = [
 
 export default function TopicsPage() {
   return (
-    <div className="container py-16">
-      <h1 className="text-5xl font-extrabold tracking-tight mb-12 text-center">
+    <motion.div
+      className="container py-16"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <motion.h1
+        className="text-5xl font-extrabold tracking-tight mb-12 text-center"
+        initial={{ y: -30, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
         Explore AI Topics
-      </h1>
-      <p className="text-lg text-muted-foreground text-center mb-8 max-w-2xl mx-auto">
-        Dive into various AI topics ranging from deep learning to ethical AI, and discover insights that can help you advance your knowledge and career.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      </motion.h1>
+      <motion.p
+        className="text-lg text-muted-foreground text-center mb-8 max-w-2xl mx-auto"
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        Dive into various AI topics ranging from deep learning to ethical AI, and discover insights that can help you
+        advance your knowledge and career.
+      </motion.p>
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: { opacity: 0 },
+          visible: {
+            opacity: 1,
+            transition: {
+              staggerChildren: 0.2,
+            },
+          },
+        }}
+      >
         {topics.map((topic) => (
-          <Card
+          <motion.div
             key={topic.slug}
-            className="hover:shadow-2xl transition-all rounded-xl overflow-hidden border border-border"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              visible: { opacity: 1, y: 0 },
+            }}
           >
-            <CardHeader className="bg-muted px-6 py-4">
-              <CardTitle className="text-xl font-bold text-primary">{topic.title}</CardTitle>
-              <CardDescription className="text-md">{topic.description}</CardDescription>
-            </CardHeader>
-            <CardContent className="px-6 py-4 flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">
-                {topic.count} articles
-              </span>
-              <Link
-                href={`/topics/${topic.slug}`}
-                className="text-primary font-medium hover:underline transition-all"
-              >
-                View articles →
-              </Link>
-            </CardContent>
-          </Card>
+            <Card
+              className="hover:shadow-2xl transition-all rounded-xl overflow-hidden border border-border"
+            >
+              <CardHeader className="bg-muted px-6 py-4">
+                <CardTitle className="text-xl font-bold text-primary">{topic.title}</CardTitle>
+                <CardDescription className="text-md">{topic.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="px-6 py-4 flex justify-between items-center">
+                <span className="text-sm text-muted-foreground">
+                  {topic.count} articles
+                </span>
+                <Link
+                  href={`/topics/${topic.slug}`}
+                  className="text-primary font-medium hover:underline transition-all"
+                >
+                  View articles →
+                </Link>
+              </CardContent>
+            </Card>
+          </motion.div>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }

@@ -1,4 +1,7 @@
+"use client"
+
 import Link from "next/link"
+import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 const posts = [
@@ -41,32 +44,64 @@ const posts = [
 
 export default function BlogPage() {
   return (
-    <div className="container py-12">
-      <div className="max-w-4xl mx-auto">
+    <motion.div
+      className="container py-12"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+    >
+      <motion.div
+        className="max-w-4xl mx-auto"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
         <h1 className="text-4xl font-bold tracking-tighter mb-8">Blog</h1>
-        <div className="space-y-8">
+        <motion.div
+          className="space-y-8"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: { opacity: 0, y: 30 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: {
+                staggerChildren: 0.2,
+              },
+            },
+          }}
+        >
           {posts.map((post) => (
-            <Card key={post.slug}>
-              <CardHeader>
-                <div className="text-sm text-muted-foreground">
-                  {post.category} • {post.date}
-                </div>
-                <CardTitle className="text-2xl mt-2">
-                  <Link href={`/blog/${post.slug}`} className="hover:underline">
-                    {post.title}
+            <motion.div
+              key={post.slug}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0 },
+              }}
+            >
+              <Card className="hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <div className="text-sm text-muted-foreground">
+                    {post.category} • {post.date}
+                  </div>
+                  <CardTitle className="text-2xl mt-2">
+                    <Link href={`/blog/${post.slug}`} className="hover:underline">
+                      {post.title}
+                    </Link>
+                  </CardTitle>
+                  <CardDescription className="text-base">{post.description}</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Link href={`/blog/${post.slug}`} className="text-primary hover:underline">
+                    Read more →
                   </Link>
-                </CardTitle>
-                <CardDescription className="text-base">{post.description}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <Link href={`/blog/${post.slug}`} className="text-primary hover:underline">
-                  Read more →
-                </Link>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
-        </div>
-      </div>
-    </div>
+        </motion.div>
+      </motion.div>
+    </motion.div>
   )
 }
